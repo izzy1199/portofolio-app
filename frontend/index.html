@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portofolio Dhiki</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a href="#" class="logo">Dhiki</a>
+    <nav>
+      <a href="#tentang">Tentang</a>
+      <a href="#proyek">Proyek</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Halo, gua D 👋</h1>
+      <p>Lagi belajar-belajar aja</p>
+      <button id="tombol">Klik ini yak</button>
+    </section>
+
+    <section id="tentang" class="section">
+      <h2>About Me</h2>
+      <p>Gua D, lagi belajar bikin website dan DevOps dari nol. Targetnya bisa deploy website sendiri ke server. Keren gaa sih menurut kalian?</p>
+    </section>
+
+    <section id="proyek" class="section">
+      <h2>Proyek</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>Website Portofolio</h3>
+          <p>Project pertama gua, dibikin pakai HTML, CSS, dan JavaScript.</p>
+        </article>
+        <article class="card">
+          <h3>Blog Pribadi</h3>
+          <p>Segera hadir, bakal dibikin pakai Next.js dan PostgreSQL.</p>
+        </article>
+        <article class="card">
+          <h3>Deploy ke Server</h3>
+          <p>Segera hadir, pakai Docker, Nginx, dan GitHub Actions.</p>
+        </article>
+      </div>
+    </section>
+
+<section id="pesan" class="section">
+  <h2>Kirim Pesan</h2>
+  <form id="form-pesan">
+    <input id="nama" placeholder="Nama lu" required maxlength="100">
+    <textarea id="isi" placeholder="Pesan..." required maxlength="1000"></textarea>
+    <button type="submit">Kirim</button>
+  </form>
+  <ul id="daftar-pesan"></ul>
+</section>
+
+    <section id="kontak" class="section">
+      <h2>Kontak</h2>
+      <p>Email: <a href="mailto:email@lu.com">sayasiapa1199@gmail.com</a></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 Dhiki. Dibuat sambil belajar.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
