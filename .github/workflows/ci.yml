@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ambil kode
+        uses: actions/checkout@v4
+
+      - name: Bikin .env sementara untuk CI
+        run: |
+          cat > .env <<'ENVEOF'
+          POSTGRES_USER=ci
+          POSTGRES_PASSWORD=ci-password-sementara
+          POSTGRES_DB=portofolio
+          ENVEOF
+
+      - name: Build dan jalanin semua service
+        run: docker compose up -d --build
+
+      - name: Tunggu backend siap lalu tes API
+        run: |
+          for i in $(seq 1 30); do
+            if curl -sf http://localhost:8090/api/health; then
+              echo "Health OK"
+              break
+            fi
+            sleep 2
+          done
+          curl -sf http://localhost:8090/api/health
+          curl -sf -X POST http://localhost:8090/api/pesan \
+            -H "Content-Type: application/json" \
+            -d '{"nama":"CI","isi":"tes dari GitHub Actions"}'
+          curl -sf http://localhost:8090/api/pesan | grep "GitHub Actions"
+
+      - name: Tampilkan log kalau gagal
+        if: failure()
+        run: docker compose logs
+
+      - name: Matikan service
+        if: always()
+        run: docker compose down -v
